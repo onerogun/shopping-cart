@@ -3,17 +3,17 @@ import { render } from "react-dom";
 import "./App.css";
 import CartProvider from "./CartContext";
 import ProductList from "./ProductList";
-import Cart from "./Cart";
 import { ProductProvider } from "./ProductContext";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
 import CartDetails from "./CartDetails";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+
 function App() {
   return (
     <BrowserRouter>
       <ProductProvider>
         <CartProvider>
           <Switch>
-            <Route exact path="/" component={ProductList} />
+            <Route exact path="/products" component={ProductList} />
             <Route path="/cart" component={CartDetails} />
           </Switch>
         </CartProvider>

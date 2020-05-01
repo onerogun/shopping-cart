@@ -14,21 +14,25 @@ const Cart = () => {
     setItemNumberTotal,
   ] = useContext(CartContext);
 
-
-
   return (
     <React.Fragment>
-      <div>
-        <span>Number of Items in cart : {itemNumberTotal}</span>
-        <hr />
-        <span>Total : {cartTotal.toFixed(2)}</span>
+      <div className="d-flex justify-content-end mt-2">
+        <div>
+          <span>Number of Items in cart : {itemNumberTotal}</span>
+        </div>
+        <div className="mr-5 ml-5">
+          <Link to="/cart">
+            <button>
+              Cart
+              <i className="fas fa-cart-plus" />
+            </button>
+          </Link>
+        </div>
       </div>
-      <Link to="/cart" className="ml-auto">
-        <button>
-          Cart
-          <i className="fas fa-cart-plus" />
-        </button>
-      </Link>
+      <hr />
+      <div className="float-right">
+        <span className="mr-5">Total : {cartTotal.toFixed(2)}</span>
+      </div>
     </React.Fragment>
   );
 };

@@ -1,11 +1,33 @@
-import React from "react";
-
+import React, { useContext } from "react";
+import { CartContext } from "./CartContext";
 const CartDetailsItem = (props) => {
+  const [
+    cart,
+    setCart,
+    cartTotal,
+    setCartTotal,
+    newItem,
+    setNewItem,
+    itemNumberTotal,
+    setItemNumberTotal,
+  ] = useContext(CartContext);
+
+  const removeFromCart = () => {
+    const productToRemove = {
+      name: props.name,
+      price: props.price,
+      id: props.id,
+      amount: 0,
+    };
+
+    setNewItem((current) => [...current, productToRemove]);
+  };
+
   return (
     <div className="row my-1 text-capitalize text-center">
       <div className="col-10 mx-auto col-lg-2">
         <img
-         /* src={`http://admin.2qn4ziu8xq.us-east-1.elasticbeanstalk.com/getimageforjson/${props.id}`}*/
+       /*   src={`http://admin.2qn4ziu8xq.us-east-1.elasticbeanstalk.com/getimageforjson/${props.id}`}*/
           style={{ width: "5rem", height: "5rem" }}
           alt="product"
           className="img-fluid"
@@ -17,7 +39,7 @@ const CartDetailsItem = (props) => {
       </div>
       <div className="col-10 mx-auto col-lg-2">
         <span className="d-lg-none">price: </span>
-        {props.price}
+        {props.price.toFixed(2)}
       </div>
       <div className="col-10 mx-auto col-lg-2">
         <span className="d-lg-none">amount: </span>
@@ -25,10 +47,17 @@ const CartDetailsItem = (props) => {
       </div>
       <div className="col-10 mx-auto col-lg-2">
         <span className="d-lg-none">Total:$ </span>
-        {props.price * props.amount}
+        {(props.price * props.amount).toFixed(2)}
       </div>
       <div className="col-10 mx-auto col-lg-2">
-        <button>Remove</button>
+        <button
+          className="btn btn-dark"
+          onClick={() => {
+            removeFromCart();
+          }}
+        >
+          Remove
+        </button>
       </div>
     </div>
   );

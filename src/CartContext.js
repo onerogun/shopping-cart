@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { ProductContext } from "./ProductContext";
 
 export const CartContext = React.createContext();
 
@@ -23,6 +22,9 @@ const CartProvider = (props) => {
     if (item != null) {
       const index = getItemIndex(item.id);
       if (index != -1) {
+        if (item.amount === 0) {
+          setCart(cart.filter((cartItem) => item.id !== cartItem.id));
+        }
         setCartTotal(
           cartTotal + (item.amount - cart[index].amount) * item.price
         );

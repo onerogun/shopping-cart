@@ -34,7 +34,7 @@ const Product = (props) => {
             <h2>{props.productName}</h2>
           </div>
           <img
-            /*    src={`http://admin.2qn4ziu8xq.us-east-1.elasticbeanstalk.com/getimageforjson/${props.productId}`}   */
+           /* src={`http://admin.2qn4ziu8xq.us-east-1.elasticbeanstalk.com/getimageforjson/${props.productId}`}*/
             alt="product"
             className="card-img-top"
           />
@@ -44,7 +44,12 @@ const Product = (props) => {
           <h2>
             Amount:{amount}
             <button onClick={() => setAmount(amount + 1)}>+</button>
-            <button onClick={() => setAmount(amount - 1)}>-</button>
+            <button
+              disabled={amount === 0 ? true : false}
+              onClick={() => setAmount(amount - 1)}
+            >
+              -
+            </button>
           </h2>
           <button
             className="btn btn-dark"
